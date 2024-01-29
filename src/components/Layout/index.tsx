@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Sidebar from '../Sidebar'
-import Connect from '../Connect'
 import LoadingPage from '../LoadingPage'
 import Navbar from '../Navbar'
 import {
@@ -22,7 +21,6 @@ import {
 } from '@/store/streamSlice'
 import { NewBlockEvent } from '@cosmjs/tendermint-rpc'
 import { TxEvent } from '@cosmjs/tendermint-rpc'
-import { LS_RPC_ADDRESS } from '@/utils/constant'
 import { validateConnection, connectWebsocketClient } from '@/rpc/client'
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -48,7 +46,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (isLoading) {
-      const address = window.localStorage.getItem(LS_RPC_ADDRESS)
+      const address = process.env.NAMADA_RPC_URL
       if (!address) {
         setIsLoading(false)
         return
@@ -70,14 +68,12 @@ export default function Layout({ children }: { children: ReactNode }) {
     try {
       const isValid = await validateConnection(address)
       if (!isValid) {
-        window.localStorage.removeItem(LS_RPC_ADDRESS)
         setIsLoading(false)
         return
       }
 
       const tmClient = await connectWebsocketClient(address)
       if (!tmClient) {
-        window.localStorage.removeItem(LS_RPC_ADDRESS)
         setIsLoading(false)
         return
       }
@@ -89,7 +85,6 @@ export default function Layout({ children }: { children: ReactNode }) {
       setIsLoading(false)
     } catch (err) {
       console.error(err)
-      window.localStorage.removeItem(LS_RPC_ADDRESS)
       setIsLoading(false)
       return
     }
@@ -106,7 +101,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       ) : (
         <></>
       )}
-      {!connectState && !isLoading ? <Connect /> : <></>}
+      {!connectState && !isLoading ? <p>Unknown</p> : <></>}
     </>
   )
 }

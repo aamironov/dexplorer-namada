@@ -13,7 +13,6 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
-  Button,
   Heading,
 } from '@chakra-ui/react'
 import {
@@ -23,16 +22,12 @@ import {
   FiStar,
   FiSliders,
   FiMenu,
-  FiLogOut,
   FiGithub,
   FiAlertCircle,
 } from 'react-icons/fi'
 import { IconType } from 'react-icons'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { selectSubsNewBlock, selectSubsTxEvent } from '@/store/streamSlice'
-import { useSelector } from 'react-redux'
-import { LS_RPC_ADDRESS } from '@/utils/constant'
 
 interface LinkItemProps {
   name: string
@@ -98,16 +93,6 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
-  const subsNewBlock = useSelector(selectSubsNewBlock)
-  const subsTxEvent = useSelector(selectSubsTxEvent)
-
-  const handleDisconnect = () => {
-    subsNewBlock?.unsubscribe()
-    subsTxEvent?.unsubscribe()
-    window.localStorage.removeItem(LS_RPC_ADDRESS)
-    window.location.replace('/')
-  }
-
   return (
     <Box
       bg={useColorModeValue('light-container', 'dark-container')}
@@ -139,7 +124,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
               {link.name}
             </NavItem>
           ))}
-          <Heading
+          {/* <Heading
             mt="6"
             p="4"
             mx="4"
@@ -159,18 +144,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             >
               {link.name}
             </NavItem>
-          ))}
+          ))} */}
         </Box>
-        <Flex justifyContent="center" mb="4">
-          <Button
-            leftIcon={<FiLogOut />}
-            colorScheme="red"
-            variant="outline"
-            onClick={handleDisconnect}
-          >
-            Disconnect
-          </Button>
-        </Flex>
       </Flex>
     </Box>
   )
