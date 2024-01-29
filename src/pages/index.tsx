@@ -28,7 +28,7 @@ import { useSelector } from 'react-redux'
 import { getValidators } from '@/rpc/query'
 import { selectTmClient } from '@/store/connectSlice'
 import { selectNewBlock } from '@/store/streamSlice'
-import { displayDate } from '@/utils/helper'
+import { displayDate, truncate } from '@/utils/helper'
 import { StatusResponse } from '@cosmjs/tendermint-rpc'
 
 export default function Home() {
@@ -54,8 +54,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Home | Dexplorer</title>
-        <meta name="description" content="Home | Dexplorer" />
+        <title>Home | Dexplorer - Namada</title>
+        <meta name="description" content="Home | Dexplorer - Namada" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -73,7 +73,7 @@ export default function Home() {
           >
             <Icon
               fontSize="16"
-              color={useColorModeValue('light-theme', 'dark-theme')}
+              color={useColorModeValue('black', 'dark-theme')}
               as={FiHome}
             />
           </Link>
@@ -118,7 +118,7 @@ export default function Home() {
                 bgColor="orange.200"
                 color="orange.600"
                 icon={FiCpu}
-                name="Network"
+                name="Chain ID"
                 value={
                   newBlock?.header.chainId
                     ? newBlock?.header.chainId
@@ -179,7 +179,14 @@ const BoxInfo = ({
       >
         <Icon fontSize="20" color={color} as={icon} />
       </Box>
-      <Heading size={'md'}>{value}</Heading>
+      <Heading size={'md'}>
+        {typeof value === 'string'
+          ? truncate(value, {
+              headLength: 12,
+              tailLength: 6,
+            })
+          : value}
+      </Heading>
       <Text size={'sm'}>{name}</Text>
     </VStack>
   )

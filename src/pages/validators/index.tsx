@@ -107,8 +107,8 @@ export default function Validators() {
   return (
     <>
       <Head>
-        <title>Blocks | Dexplorer</title>
-        <meta name="description" content="Blocks | Dexplorer" />
+        <title>Blocks | Dexplorer - Namada</title>
+        <meta name="description" content="Blocks | Dexplorer - Namada" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -126,7 +126,7 @@ export default function Validators() {
           >
             <Icon
               fontSize="16"
-              color={useColorModeValue('light-theme', 'dark-theme')}
+              color={useColorModeValue('black', 'dark-theme')}
               as={FiHome}
             />
           </Link>

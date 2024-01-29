@@ -122,8 +122,8 @@ export default function Proposals() {
   return (
     <>
       <Head>
-        <title>Proposals | Dexplorer</title>
-        <meta name="description" content="Proposals | Dexplorer" />
+        <title>Proposals | Dexplorer - Namada</title>
+        <meta name="description" content="Proposals | Dexplorer - Namada" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -141,7 +141,7 @@ export default function Proposals() {
           >
             <Icon
               fontSize="16"
-              color={useColorModeValue('light-theme', 'dark-theme')}
+              color={useColorModeValue('black', 'dark-theme')}
               as={FiHome}
             />
           </Link>

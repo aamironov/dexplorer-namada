@@ -123,8 +123,8 @@ export default function DetailBlock() {
   return (
     <>
       <Head>
-        <title>Detail Block | Dexplorer</title>
-        <meta name="description" content="Block | Dexplorer" />
+        <title>Detail Block | Dexplorer - Namada</title>
+        <meta name="description" content="Block | Dexplorer - Namada" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -142,7 +142,7 @@ export default function DetailBlock() {
           >
             <Icon
               fontSize="16"
-              color={useColorModeValue('light-theme', 'dark-theme')}
+              color={useColorModeValue('black', 'dark-theme')}
               as={FiHome}
             />
           </Link>

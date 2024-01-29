@@ -189,11 +189,10 @@ const NavItem = ({ icon, children, route, isBlank, ...rest }: NavItemProps) => {
             ? useColorModeValue('light-theme', 'dark-theme')
             : 'transparent'
         }
-        color={isSelected ? 'white' : useColorModeValue('black', 'white')}
+        color={isSelected ? 'black' : useColorModeValue('black', 'white')}
         _hover={{
-          color: isSelected
-            ? 'white'
-            : useColorModeValue('light-theme', 'dark-theme'),
+          bg: 'black',
+          color: useColorModeValue('light-theme', 'dark-theme'),
         }}
         {...rest}
       >
@@ -202,9 +201,7 @@ const NavItem = ({ icon, children, route, isBlank, ...rest }: NavItemProps) => {
             mr="4"
             fontSize="16"
             _groupHover={{
-              color: isSelected
-                ? 'white'
-                : useColorModeValue('light-theme', 'dark-theme'),
+              color: useColorModeValue('light-theme', 'dark-theme'),
             }}
             as={icon}
           />

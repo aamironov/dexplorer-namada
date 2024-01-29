@@ -83,3 +83,21 @@ export const getTypeMsg = (typeUrl: string): string => {
   }
   return ''
 }
+
+export function truncate(
+  str: string,
+  options?: {
+    headLength?: number
+    tailLength?: number
+    disabled?: boolean
+  }
+) {
+  const headLength = options?.headLength || 10
+  const tailLength = options?.tailLength || 6
+  const mask = '...'
+  const truncatedLen = headLength + tailLength + mask.length
+  if (str.length <= truncatedLen || options?.disabled) return str
+  const head = str.substring(0, headLength)
+  const tail = str.substring(str.length - tailLength, str.length)
+  return head + mask + tail
+}

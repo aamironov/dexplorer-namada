@@ -145,8 +145,8 @@ export default function DetailAccount() {
   return (
     <>
       <Head>
-        <title>Detail Account | Dexplorer</title>
-        <meta name="description" content="Account | Dexplorer" />
+        <title>Detail Account | Dexplorer - Namada</title>
+        <meta name="description" content="Account | Dexplorer - Namada" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -164,7 +164,7 @@ export default function DetailAccount() {
           >
             <Icon
               fontSize="16"
-              color={useColorModeValue('light-theme', 'dark-theme')}
+              color={useColorModeValue('black', 'dark-theme')}
               as={FiHome}
             />
           </Link>

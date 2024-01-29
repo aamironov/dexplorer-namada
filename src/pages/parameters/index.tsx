@@ -20,8 +20,8 @@ export default function Parameters() {
   return (
     <>
       <Head>
-        <title>Parameters | Dexplorer</title>
-        <meta name="description" content="Parameters | Dexplorer" />
+        <title>Parameters | Dexplorer - Namada</title>
+        <meta name="description" content="Parameters | Dexplorer - Namada" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -39,7 +39,7 @@ export default function Parameters() {
           >
             <Icon
               fontSize="16"
-              color={useColorModeValue('light-theme', 'dark-theme')}
+              color={useColorModeValue('black', 'dark-theme')}
               as={FiHome}
             />
           </Link>

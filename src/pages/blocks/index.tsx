@@ -114,8 +114,8 @@ export default function Blocks() {
   return (
     <>
       <Head>
-        <title>Blocks | Dexplorer</title>
-        <meta name="description" content="Blocks | Dexplorer" />
+        <title>Blocks | Dexplorer - Namada</title>
+        <meta name="description" content="Blocks | Dexplorer - Namada" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -133,7 +133,7 @@ export default function Blocks() {
           >
             <Icon
               fontSize="16"
-              color={useColorModeValue('light-theme', 'dark-theme')}
+              color={useColorModeValue('black', 'dark-theme')}
               as={FiHome}
             />
           </Link>
@@ -150,13 +150,19 @@ export default function Blocks() {
           <Tabs variant="unstyled">
             <TabList>
               <Tab
-                _selected={{ color: 'white', bg: 'cyan.400' }}
+                _selected={{
+                  color: 'black',
+                  bg: useColorModeValue('light-theme', 'dark-theme'),
+                }}
                 borderRadius={5}
               >
                 Blocks
               </Tab>
               <Tab
-                _selected={{ color: 'white', bg: 'cyan.400' }}
+                _selected={{
+                  color: 'black',
+                  bg: useColorModeValue('light-theme', 'dark-theme'),
+                }}
                 borderRadius={5}
               >
                 Transactions
