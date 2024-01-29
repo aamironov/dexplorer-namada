@@ -62,21 +62,21 @@ export default function DetailBlock() {
     }
   }, [tmClient, tx])
 
-  useEffect(() => {
-    if (tx?.tx) {
-      const data = Tx.decode(tx?.tx)
-      setTxData(data)
-    }
-  }, [tx])
+  // useEffect(() => {
+  //   if (tx?.tx) {
+  //     const data = Tx.decode(tx?.tx)
+  //     setTxData(data)
+  //   }
+  // }, [tx])
 
-  useEffect(() => {
-    if (txData?.body?.messages.length && !msgs.length) {
-      for (const message of txData?.body?.messages) {
-        const msg = decodeMsg(message.typeUrl, message.value)
-        setMsgs((prevMsgs) => [...prevMsgs, msg])
-      }
-    }
-  }, [txData])
+  // useEffect(() => {
+  //   if (txData?.body?.messages.length && !msgs.length) {
+  //     for (const message of txData?.body?.messages) {
+  //       const msg = decodeMsg(message.typeUrl, message.value)
+  //       setMsgs((prevMsgs) => [...prevMsgs, msg])
+  //     }
+  //   }
+  // }, [txData])
 
   const getFee = (fees: Coin[] | undefined) => {
     if (fees && fees.length) {
@@ -171,7 +171,7 @@ export default function DetailBlock() {
             style={{ textDecoration: 'none' }}
             _focus={{ boxShadow: 'none' }}
           >
-            <Text color={'cyan.400'}>Blocks</Text>
+            <Text color={useColorModeValue('black', 'dark-theme')}>Blocks</Text>
           </Link>
           <Icon fontSize="16" as={FiChevronRight} />
           <Text>Tx</Text>

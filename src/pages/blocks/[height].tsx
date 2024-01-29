@@ -39,7 +39,7 @@ export default function DetailBlock() {
   const [block, setBlock] = useState<Block | null>(null)
 
   interface Tx {
-    data: TxData
+    data: TxData | null
     hash: Uint8Array
   }
   const [txs, setTxs] = useState<Tx[]>([])
@@ -55,12 +55,11 @@ export default function DetailBlock() {
   useEffect(() => {
     if (block?.txs.length && !txs.length) {
       for (const rawTx of block.txs) {
-        const data = TxData.decode(rawTx)
         const hash = sha256(rawTx)
         setTxs((prevTxs) => [
           ...prevTxs,
           {
-            data,
+            data: null,
             hash,
           },
         ])
@@ -153,9 +152,7 @@ export default function DetailBlock() {
             style={{ textDecoration: 'none' }}
             _focus={{ boxShadow: 'none' }}
           >
-            <Text color={useColorModeValue('light-theme', 'dark-theme')}>
-              Blocks
-            </Text>
+            <Text color={useColorModeValue('dark', 'dark-theme')}>Blocks</Text>
           </Link>
           <Icon fontSize="16" as={FiChevronRight} />
           <Text>Block #{height}</Text>
@@ -250,8 +247,12 @@ export default function DetailBlock() {
                         <Text color={'cyan.400'}>{trimHash(tx.hash)}</Text>
                       </Link>
                     </Td>
-                    <Td>{renderMessages(tx.data.body?.messages)}</Td>
-                    <Td>{getFee(tx.data.authInfo?.fee?.amount)}</Td>
+                    <Td>
+                      {tx.data ? renderMessages(tx.data.body?.messages) : '-'}
+                    </Td>
+                    <Td>
+                      {tx.data ? getFee(tx.data.authInfo?.fee?.amount) : '-'}
+                    </Td>
                     <Td>{height}</Td>
                     <Td>
                       {block?.header.time
