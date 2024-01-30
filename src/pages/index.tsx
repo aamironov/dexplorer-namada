@@ -26,24 +26,27 @@ import NextLink from 'next/link'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getValidators } from '@/rpc/query'
-import { selectTmClient } from '@/store/connectSlice'
+import { selectRPCAddress, selectTmClient } from '@/store/connectSlice'
 import { selectNewBlock } from '@/store/streamSlice'
 import { displayDate, truncate } from '@/utils/helper'
 import { StatusResponse } from '@cosmjs/tendermint-rpc'
+import { fetchValidators } from '@/rpc/query/namada'
 
 export default function Home() {
   const tmClient = useSelector(selectTmClient)
   const newBlock = useSelector(selectNewBlock)
+  const address = useSelector(selectRPCAddress)
   const [validators, setValidators] = useState<number>()
   const [isLoaded, setIsLoaded] = useState(false)
   const [status, setStatus] = useState<StatusResponse | null>()
 
   useEffect(() => {
-    if (tmClient) {
-      tmClient.status().then((response) => setStatus(response))
-      getValidators(tmClient).then((response) => setValidators(response.total))
+    if (address) {
+      // tmClient.status().then((response) => setStatus(response))
+      // getValidators(tmClient).then((response) => setValidators(response.total))
+      fetchValidators(address).then((response) => console.log(response))
     }
-  }, [tmClient])
+  }, [address])
 
   useEffect(() => {
     if ((!isLoaded && newBlock) || (!isLoaded && status)) {
